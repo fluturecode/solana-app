@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
+import { Button } from 'react-bootstrap';
 
 const TWITTER_HANDLE = 'fluturecode';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
@@ -22,9 +23,9 @@ const App = () => {
   const connectWallet = async() => {};
 
   const renderNotConnectedContainer = () => (
-    <button className='cta-button connect-wallet-button' onClick={connectWallet}>
+    <Button className="cta-button connect-wallet-button" onClick={connectWallet}>
       Connect to Wallet
-    </button>
+    </Button>
   )
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const App = () => {
           <p className="sub-text">
             View your GIF collection in the metaverse ✨
           </p>
-          {renderNotConnectedContainer}
+          {renderNotConnectedContainer()}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
