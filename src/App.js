@@ -9,7 +9,6 @@ const App = () => {
   const checkIfWalletIsConnected = async () => {
     if (window?.solana?.isPhantom) {
       console.log('Phantom wallet found!');
-
       const response = await window.solana.connect({ onlyIfTrusted: true });
       console.log(
         'Connected with Public Key:',
@@ -19,6 +18,14 @@ const App = () => {
       alert('Solana object not found! Get a Phantom Wallet 👻');
     }
   };
+
+  const connectWallet = async() => {};
+
+  const renderNotConnectedContainer = () => (
+    <button className='cta-button connect-wallet-button' onClick={connectWallet}>
+      Connect to Wallet
+    </button>
+  )
 
   useEffect(() => {
     const onLoad = async () => {
@@ -36,6 +43,7 @@ const App = () => {
           <p className="sub-text">
             View your GIF collection in the metaverse ✨
           </p>
+          {renderNotConnectedContainer}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
