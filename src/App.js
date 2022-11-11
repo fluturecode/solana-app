@@ -9,6 +9,12 @@ const App = () => {
   const checkIfWalletIsConnected = async () => {
     if (window?.solana?.isPhantom) {
       console.log('Phantom wallet found!');
+
+      const response = await window.solana.connect({ onlyIfTrusted: true });
+      console.log(
+        'Connected with Public Key:',
+        response.publicKey.toString()
+      );
     } else {
       alert('Solana object not found! Get a Phantom Wallet 👻');
     }
@@ -38,7 +44,7 @@ const App = () => {
             href={TWITTER_LINK}
             target="_blank"
             rel="noreferrer"
-          >{`built on @${TWITTER_HANDLE}`}</a>
+          >{`built by @${TWITTER_HANDLE}`}</a>
         </div>
       </div>
     </div>
