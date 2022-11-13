@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 import { Button } from 'react-bootstrap';
@@ -7,14 +7,19 @@ const TWITTER_HANDLE = 'fluturecode';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
+  const [walletAddress, setWalletAddress] = useState();
+
   const checkIfWalletIsConnected = async () => {
     if (window?.solana?.isPhantom) {
       console.log('Phantom wallet found!');
-      const response = await window.solana.connect({ onlyIfTrusted: true });
+      const res = await window.solana.connect({ onlyIfTrusted: true });
       console.log(
         'Connected with Public Key:',
-        response.publicKey.toString()
+        res.publicKey.toString()
       );
+
+      setWalletAddress(res.publicKey.toString());
+
     } else {
       alert('Solana object not found! Get a Phantom Wallet 👻');
     }
@@ -38,13 +43,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="container">
+      <div className={walletAddress ? 'authed-container' : 'container'}>
         <div className="header-container">
           <p className="header">🖼 GIF Portal</p>
           <p className="sub-text">
             View your GIF collection in the metaverse ✨
           </p>
-          {renderNotConnectedContainer()}
+          {!walletAddress && renderNotConnectedContainer()}
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
