@@ -25,7 +25,15 @@ const App = () => {
     }
   };
 
-  const connectWallet = async() => {};
+  const connectWallet = async() => {
+    const { solana } = window;
+
+    if (solana) {
+      const res = await solana.connect();
+      console.log('Connected with Public Key:', res.publicKey.toString());
+      setWalletAddress(res.publicKey.toString());
+    }
+  };
 
   const renderNotConnectedContainer = () => (
     <Button className="cta-button connect-wallet-button" onClick={connectWallet}>
