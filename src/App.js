@@ -6,6 +6,14 @@ import { Button } from 'react-bootstrap';
 const TWITTER_HANDLE = 'fluturecode';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
+const TEST_GIFS = [
+	'https://giphy.com/clips/justin-dancing-80s-mashup-XOmNbD0XLaAjCWZrDb',
+	'https://giphy.com/gifs/janetjackson-dance-choreography-janet-jackson-SqewxuJrvblx62i82c',
+	'https://giphy.com/gifs/whitneyhouston-0gm9UQR9tUDXxWAyUp',
+	'https://giphy.com/clips/animation-pink-design-JMDHyBwy1b57fz0Kub',
+  'https://giphy.com/gifs/80s-music-bangles-susanna-hoffs-v8xmVfox6XOq4'
+]
+
 const App = () => {
   const [walletAddress, setWalletAddress] = useState();
 
