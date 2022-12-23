@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 import { Button } from 'react-bootstrap';
+import { render } from '@testing-library/react';
 
 const TWITTER_HANDLE = 'fluturecode';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const TEST_GIFS = [
 	'https://giphy.com/clips/justin-dancing-80s-mashup-XOmNbD0XLaAjCWZrDb',
-	'https://giphy.com/gifs/janetjackson-dance-choreography-janet-jackson-SqewxuJrvblx62i82c',
+	'https://giphy.com/clips/episode-21-bet-soul-train-r9YHYHP6KoYZiRBQnu',
 	'https://giphy.com/gifs/whitneyhouston-0gm9UQR9tUDXxWAyUp',
 	'https://giphy.com/clips/animation-pink-design-JMDHyBwy1b57fz0Kub',
   'https://giphy.com/gifs/80s-music-bangles-susanna-hoffs-v8xmVfox6XOq4'
@@ -31,6 +32,7 @@ const App = () => {
     } else {
       alert('Solana object not found! Get a Phantom Wallet 👻');
     }
+
   };
 
   const connectWallet = async() => {
@@ -44,9 +46,23 @@ const App = () => {
   };
 
   const renderNotConnectedContainer = () => (
-    <Button className="cta-button connect-wallet-button" onClick={connectWallet}>
-      Connect to Wallet
-    </Button>
+    <div className="connected-container">
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+    >
+      <input type="text" placeholder="Enter gif link!" />
+      <button type="submit" className="cta-button submit-gif-button">Submit</button>
+    </form>
+    <div className="gif-grid">
+      {TEST_GIFS.map((gif) => (
+        <div className="gif-item" key={gif}>
+          <img src={gif} alt={gif} />
+        </div>
+      ))}
+    </div>
+  </div>
   )
 
   useEffect(() => {
