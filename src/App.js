@@ -17,6 +17,7 @@ const TEST_GIFS = [
 
 const App = () => {
   const [walletAddress, setWalletAddress] = useState();
+  const [inputValue, setInputValue] = useState('');
 
   const checkIfWalletIsConnected = async () => {
     if (window?.solana?.isPhantom) {
@@ -45,6 +46,11 @@ const App = () => {
     }
   };
 
+  const onInputChange = (event) => {
+    const { value } = event.target;
+    setInputValue(value);
+  };
+
   const renderNotConnectedContainer = () => (
     <div className="connected-container">
     <form
@@ -52,7 +58,8 @@ const App = () => {
         event.preventDefault();
       }}
     >
-      <input type="text" placeholder="Enter gif link!" />
+      <input type="text" placeholder="Enter gif link!"  value={inputValue}
+  onChange={onInputChange} />
       <button type="submit" className="cta-button submit-gif-button">Submit</button>
     </form>
     <div className="gif-grid">
