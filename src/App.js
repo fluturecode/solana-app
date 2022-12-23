@@ -18,6 +18,7 @@ const TEST_GIFS = [
 const App = () => {
   const [walletAddress, setWalletAddress] = useState();
   const [inputValue, setInputValue] = useState('');
+  const [gifList, setGifList] = useState([]);
 
   const checkIfWalletIsConnected = async () => {
     if (window?.solana?.isPhantom) {
@@ -88,6 +89,14 @@ const App = () => {
     window.addEventListener('load', onLoad);
     return () => window.removeEventListener('load', onLoad);
   }, []);
+
+
+useEffect(() => {
+  if (walletAddress) {
+    console.log('Fetching GIF list...');
+    setGifList(TEST_GIFS);
+  }
+}, [walletAddress]);
 
   return (
     <div className="App">
