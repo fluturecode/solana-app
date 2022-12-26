@@ -68,9 +68,15 @@ const App = () => {
         sendGif();
       }}
     >
-      <input type="text" placeholder="Enter gif link!"  value={inputValue}
-  onChange={onInputChange} />
-      <button type="submit" className="cta-button submit-gif-button">Submit</button>
+      <input
+        type="text"
+        placeholder="Enter gif link!"
+        value={inputValue}
+        onChange={onInputChange}
+      />
+      <button type="submit" className="cta-button submit-gif-button">
+        Submit
+      </button>
     </form>
     <div className="gif-grid">
       {TEST_GIFS.map((gif) => (
