@@ -14,7 +14,7 @@ const TEST_GIFS = [
 ];
 
 const App = () => {
-  const [walletAddress, setWalletAddress] = useState();
+  const [walletAddress, setWalletAddress] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [gifList, setGifList] = useState([]);
 
@@ -27,16 +27,6 @@ const App = () => {
       setWalletAddress(res.publicKey.toString());
     } else {
       alert('Solana object not found! Get a Phantom Wallet 👻');
-    }
-  };
-
-  const connectWallet = async () => {
-    const { solana } = window;
-
-    if (solana) {
-      const res = await solana.connect();
-      console.log('Connected with Public Key:', res.publicKey.toString());
-      setWalletAddress(res.publicKey.toString());
     }
   };
 
